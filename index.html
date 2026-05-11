@@ -3,36 +3,667 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="style.css" />
+    <!-- Using Google Fonts and Material Symbols -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
     <link
       rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"
     />
-    <title>Document</title>
+    
+    <title>Agency - Digital Solutions</title>
+
+    <style>
+      /* --- CSS VARIABLES & RESET --- */
+      :root {
+        --primary-color: #111111;
+        --secondary-color: #555555;
+        --accent-color: #3b82f6; /* Modern Blue */
+        --bg-light: #f9fafb;
+        --bg-white: #ffffff;
+        --border-color: #e5e7eb;
+        --font-main: 'Inter', sans-serif;
+        --transition: all 0.3s ease;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        font-family: var(--font-main);
+        color: var(--primary-color);
+        line-height: 1.6;
+        background-color: var(--bg-white);
+      }
+
+      a {
+        text-decoration: none;
+        color: inherit;
+      }
+
+      ul {
+        list-style: none;
+      }
+
+      img {
+        max-width: 100%;
+        display: block;
+        object-fit: cover;
+      }
+
+      /* --- HEADER --- */
+      .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px 5%;
+        position: sticky;
+        top: 0;
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(10px);
+        z-index: 1000;
+        border-bottom: 1px solid var(--border-color);
+      }
+
+      .logo {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-weight: 700;
+        font-size: 1.5rem;
+        cursor: pointer;
+      }
+      
+      .logo h1 {
+        background: var(--accent-color);
+        color: white;
+        width: 40px;
+        height: 40px;
+        border-radius: 8px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 1.5rem;
+      }
+
+      .nav-bar ul {
+        display: flex;
+        gap: 30px;
+      }
+
+      .nav-bar a {
+        font-weight: 500;
+        color: var(--secondary-color);
+        transition: var(--transition);
+      }
+
+      .nav-bar a:hover {
+        color: var(--accent-color);
+      }
+
+      .nav-button a {
+        padding: 10px 24px;
+        background-color: var(--primary-color);
+        color: white;
+        border-radius: 6px;
+        font-weight: 500;
+        transition: var(--transition);
+      }
+
+      .nav-button a:hover {
+        background-color: var(--accent-color);
+        transform: translateY(-2px);
+      }
+
+      /* Mobile Menu Button (Hidden on Desktop) */
+      .mobile-menu-btn {
+        display: none;
+        font-size: 2rem;
+        cursor: pointer;
+      }
+
+      /* --- HERO SECTION --- */
+      .Hero-section {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        align-items: center;
+        gap: 40px;
+        padding: 80px 5%;
+        max-width: 1400px;
+        margin: 0 auto;
+      }
+
+      .hero h6 {
+        color: var(--accent-color);
+        font-weight: 600;
+        letter-spacing: 1px;
+        margin-bottom: 15px;
+        text-transform: uppercase;
+      }
+
+      .hero h1 {
+        font-size: 3.5rem;
+        line-height: 1.1;
+        margin-bottom: 20px;
+        color: var(--primary-color);
+      }
+
+      .hero p {
+        color: var(--secondary-color);
+        font-size: 1.125rem;
+        margin-bottom: 30px;
+        max-width: 90%;
+      }
+
+      .hero-button {
+        display: flex;
+        gap: 15px;
+        margin-bottom: 40px;
+      }
+
+      .hero-button button {
+        padding: 14px 32px;
+        border-radius: 6px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: var(--transition);
+        border: 1px solid transparent;
+      }
+
+      .hero-button button:first-child {
+        background-color: var(--primary-color);
+        color: white;
+      }
+      
+      .hero-button button:first-child:hover {
+        background-color: var(--accent-color);
+      }
+
+      .button-2 {
+        background-color: transparent !important;
+        color: var(--primary-color) !important;
+        border-color: var(--border-color) !important;
+      }
+
+      .button-2:hover {
+        border-color: var(--primary-color) !important;
+      }
+
+      .rank {
+        display: flex;
+        gap: 40px;
+        border-top: 1px solid var(--border-color);
+        padding-top: 20px;
+      }
+
+      .rank p {
+        font-weight: 600;
+        color: var(--primary-color);
+        font-size: 1.1rem;
+      }
+
+      .hero-img img {
+        border-radius: 20px;
+        box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        width: 100%;
+        height: auto;
+      }
+
+      /* --- TRUST SECTION --- */
+      .Those-who-trust-us {
+        padding: 60px 5%;
+        text-align: center;
+        background-color: var(--bg-light);
+      }
+
+      .Those-who-trust-us > p {
+        margin-bottom: 30px;
+        font-weight: 600;
+        color: var(--secondary-color);
+        letter-spacing: 1px;
+      }
+
+      .Development {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 40px;
+        opacity: 0.6;
+      }
+
+      .Development ul {
+        font-size: 1.2rem;
+        font-weight: 500;
+      }
+
+      /* --- SERVICES SECTION --- */
+      .services-section {
+        padding: 100px 5%;
+        max-width: 1400px;
+        margin: 0 auto;
+      }
+
+      .services-header {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 40px;
+        margin-bottom: 60px;
+      }
+
+      .header-left p {
+        color: var(--accent-color);
+        font-weight: 600;
+        margin-bottom: 10px;
+      }
+
+      .header-left h2 {
+        font-size: 2.5rem;
+      }
+
+      .header-right p {
+        color: var(--secondary-color);
+        font-size: 1.1rem;
+      }
+
+      .services-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 30px;
+      }
+
+      .service-card {
+        background: var(--bg-white);
+        border: 1px solid var(--border-color);
+        padding: 30px;
+        border-radius: 12px;
+        transition: var(--transition);
+      }
+
+      .service-card:hover {
+        border-color: var(--accent-color);
+        box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        transform: translateY(-5px);
+      }
+
+      .icon-box {
+        width: 50px;
+        height: 50px;
+        background: var(--bg-light);
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 20px;
+        color: var(--primary-color);
+      }
+
+      .service-card h3 {
+        margin-bottom: 10px;
+        font-size: 1.25rem;
+      }
+
+      .service-card p {
+        color: var(--secondary-color);
+        margin-bottom: 20px;
+        font-size: 0.95rem;
+      }
+
+      .details-btn {
+        font-weight: 600;
+        color: var(--primary-color);
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+        transition: var(--transition);
+      }
+
+      .details-btn:hover {
+        gap: 10px;
+        color: var(--accent-color);
+      }
+
+      /* --- PORTFOLIO --- */
+      .project {
+        margin-top: 120px;
+        margin-bottom: 40px;
+      }
+      
+      .project p {
+        color: var(--accent-color);
+        font-weight: 600;
+      }
+
+      .project h1 {
+        font-size: 2.5rem;
+        margin-top: 10px;
+      }
+
+      .picture {
+        display: grid;
+        grid-template-columns: 1.5fr 1fr;
+        gap: 20px;
+      }
+
+      .picture img {
+        width: 100%;
+        height: 400px;
+        border-radius: 12px;
+        transition: var(--transition);
+      }
+
+      .picture img:hover {
+        transform: scale(1.01);
+      }
+
+      /* --- TEAM SECTION --- */
+      .team {
+        padding: 100px 5% 40px;
+        text-align: center;
+        max-width: 1400px;
+        margin: 0 auto;
+      }
+
+      .team p {
+        color: var(--accent-color);
+        font-weight: 600;
+      }
+
+      .team h1 {
+        font-size: 2.5rem;
+        margin-top: 10px;
+      }
+
+      .team-wrapper {
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 0 5%;
+      }
+
+      .team-picture {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 30px;
+      }
+
+      .Founder {
+        width: 100%;
+        height: 350px;
+        border-radius: 12px;
+        margin-bottom: 15px;
+      }
+
+      .team-member-name {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 30px;
+        padding-bottom: 100px;
+      }
+
+      .team-member-name p {
+        font-weight: 600;
+        font-size: 1.1rem;
+        color: var(--primary-color);
+      }
+      
+      .team-member-name p br {
+        display: none; /* Hide line break for flex wrapping, handle with span if needed, but block is fine here */
+      }
+
+      .team-member-name p span {
+        display: block;
+        font-weight: 400;
+        font-size: 0.9rem;
+        color: var(--secondary-color);
+        margin-top: 5px;
+      }
+
+      /* --- CONTACT SECTION --- */
+      .Contact-us {
+        padding: 80px 5%;
+        background-color: var(--bg-light);
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 60px;
+        max-width: 1400px;
+        margin: 0 auto;
+        border-radius: 20px;
+        margin-bottom: 80px;
+      }
+
+      .contact p {
+        color: var(--accent-color);
+        font-weight: 600;
+      }
+
+      .contact h1 {
+        font-size: 2.5rem;
+        margin: 10px 0;
+      }
+
+      .contact h5 {
+        color: var(--secondary-color);
+        font-size: 1.1rem;
+        margin-bottom: 30px;
+      }
+
+      .contact-system {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        margin-bottom: 20px;
+      }
+
+      .contact-system span {
+        color: var(--accent-color);
+        font-size: 1.5rem;
+      }
+
+      .contact-system h6 {
+        font-size: 1.1rem;
+        font-weight: 500;
+      }
+
+      .contact-form {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+      }
+
+      .contact-form input,
+      .contact-form select,
+      .contact-form textarea {
+        padding: 15px;
+        border: 1px solid var(--border-color);
+        border-radius: 8px;
+        font-family: inherit;
+        font-size: 1rem;
+        background: white;
+        outline: none;
+        transition: var(--transition);
+      }
+
+      .contact-form input:focus,
+      .contact-form select:focus,
+      .contact-form textarea:focus {
+        border-color: var(--accent-color);
+        box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+      }
+
+      .send-btn {
+        padding: 15px;
+        background-color: var(--primary-color);
+        color: white;
+        border: none;
+        border-radius: 8px;
+        font-weight: 600;
+        cursor: pointer;
+        font-size: 1rem;
+        transition: var(--transition);
+        margin-top: 10px;
+      }
+
+      .send-btn:hover {
+        background-color: var(--accent-color);
+      }
+
+      /* --- FOOTER --- */
+      .footer-section {
+        padding: 80px 5% 30px;
+        background-color: var(--primary-color);
+        color: white;
+      }
+
+      .footer-container {
+        display: grid;
+        grid-template-columns: 1.5fr 1fr 1fr;
+        gap: 60px;
+        max-width: 1400px;
+        margin: 0 auto;
+      }
+
+      .footer-logo {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 20px;
+      }
+
+      .logo-icon {
+        width: 35px;
+        height: 35px;
+        background: var(--accent-color);
+        border-radius: 6px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-weight: bold;
+      }
+
+      .footer-column p {
+        color: #999;
+        margin-top: 15px;
+        max-width: 300px;
+      }
+
+      .footer-column h3 {
+        font-size: 1.2rem;
+        margin-bottom: 25px;
+        color: white;
+      }
+
+      .footer-column ul li {
+        margin-bottom: 12px;
+      }
+
+      .footer-column a {
+        color: #999;
+        transition: var(--transition);
+      }
+
+      .footer-column a:hover {
+        color: white;
+        padding-left: 5px;
+      }
+
+      .footer-divider {
+        border: 0;
+        height: 1px;
+        background: #333;
+        margin: 60px 0 30px;
+      }
+
+      .footer-bottom {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        color: #999;
+        font-size: 0.9rem;
+      }
+
+      .bottom-links {
+        display: flex;
+        gap: 20px;
+      }
+
+      .bottom-links a:hover {
+        color: white;
+      }
+
+      /* --- RESPONSIVE DESIGN --- */
+      @media (max-width: 1024px) {
+        .hero h1 { font-size: 2.8rem; }
+        .Hero-section { gap: 20px; }
+        .picture img { height: 300px; }
+      }
+
+      @media (max-width: 900px) {
+        .header { flex-wrap: wrap; }
+        .nav-bar { display: none; width: 100%; margin-top: 20px; }
+        .nav-bar.active { display: block; }
+        .nav-bar ul { flex-direction: column; align-items: center; }
+        .mobile-menu-btn { display: block; }
+        
+        .Hero-section { grid-template-columns: 1fr; text-align: center; }
+        .hero p { margin: 0 auto 30px; }
+        .hero-button { justify-content: center; }
+        .rank { justify-content: center; }
+        
+        .services-header, .picture, .Contact-us, .footer-container {
+          grid-template-columns: 1fr;
+        }
+        
+        .footer-bottom { flex-direction: column; gap: 15px; }
+      }
+
+      @media (max-width: 480px) {
+        .hero h1 { font-size: 2.2rem; }
+        .rank { flex-direction: column; gap: 10px; }
+        .hero-button { flex-direction: column; }
+        .picture { grid-template-columns: 1fr; }
+      }
+    </style>
   </head>
 
   <body>
+    <!-- Header -->
     <div class="header">
       <div class="logo">
         <h1>A</h1>
         <p>Agency</p>
       </div>
-      <div class="nav-bar">
+      
+      <!-- Mobile Menu Toggle -->
+      <div class="mobile-menu-btn" onclick="toggleMenu()">
+        <span class="material-symbols-outlined">menu</span>
+      </div>
+
+      <div class="nav-bar" id="navBar">
         <nav>
           <ul>
-            <li><a href="#Services">Services</a></li>
-            
-            <li><a href="#Portfolio">Portfolio</a></li>
-            <li><a href="#Team">Team</a></li>
-            <li><a href="#Contact">Contact</a></li>
+            <li><a href="#Services" onclick="toggleMenu()">Services</a></li>
+            <li><a href="#Portfolio" onclick="toggleMenu()">Portfolio</a></li>
+            <li><a href="#Team" onclick="toggleMenu()">Team</a></li>
+            <li><a href="#Contact" onclick="toggleMenu()">Contact</a></li>
           </ul>
         </nav>
       </div>
-      <div class="nav-button">
-        <a href="#Get a quote">Get a quote</a>
+      <div class="nav-button" style="display: none;"> <!-- Hidden on small mobile, shown in CSS for larger -->
+        <a href="#Contact">Get a quote</a>
       </div>
     </div>
 
+    <!-- Hero Section -->
     <div class="Hero-section">
       <div class="hero">
         <h6>Project underway</h6>
@@ -43,8 +674,8 @@
         </p>
 
         <div class="hero-button">
-          <button>Start project</button>
-          <button class="button-2">View work</button>
+          <button onclick="document.getElementById('Contact').scrollIntoView()">Start project</button>
+          <button class="button-2" onclick="document.getElementById('Portfolio').scrollIntoView()">View work</button>
         </div>
 
         <div class="rank">
@@ -54,37 +685,28 @@
         </div>
       </div>
       <div class="hero-img">
+        <!-- Using Picsum to ensure image always loads -->
         <img
-          src="https://picsum.photos/seed/agency-hero-bn/800/1000.jpg"
+          src="https://picsum.photos/seed/agency-hero-bn/600/700.jpg"
           alt="Agency Hero Image"
         />
       </div>
     </div>
 
+    <!-- Trust Section -->
     <div class="Those-who-trust-us">
       <p>Those who trust us</p>
       <div class="Development">
-        <ul>
-          Development
-        </ul>
-        <ul>
-          Send
-        </ul>
-        <ul>
-          Learn
-        </ul>
-        <ul>
-          Digital
-        </ul>
-        <ul>
-          Techforce
-        </ul>
-        <ul>
-          Innovator
-        </ul>
+        <ul>Development</ul>
+        <ul>Send</ul>
+        <ul>Learn</ul>
+        <ul>Digital</ul>
+        <ul>Techforce</ul>
+        <ul>Innovator</ul>
       </div>
     </div>
 
+    <!-- Services Section -->
     <section class="services-section">
       <div class="services-header">
         <div class="header-left">
@@ -102,182 +724,186 @@
       <div class="services-grid">
         <div class="service-card">
           <div class="icon-box">
-            <span class="material-symbols-outlined">filter_b_and_w</span>
+            <span class="material-symbols-outlined">brush</span>
           </div>
           <h3>Brand Identity</h3>
           <p>
             We create logos, color palettes, typography, and brand guidelines
             that tell your brand's story.
           </p>
-          <a href="#" class="details-btn"
+          <a href="#Contact" class="details-btn"
             >Details <span class="arrow">→</span></a
           >
         </div>
 
         <div class="service-card">
           <div class="icon-box">
-            <span class="material-symbols-outlined">responsive_layout</span>
+            <span class="material-symbols-outlined">devices</span>
           </div>
           <h3>Web design</h3>
           <p>
             From UI/UX design to prototypes — we design with user experience in
             mind.
           </p>
-          <a href="#" class="details-btn"
+          <a href="#Contact" class="details-btn"
             >Details <span class="arrow">→</span></a
           >
         </div>
 
         <div class="service-card">
           <div class="icon-box">
-            <span class="material-symbols-outlined">deployed_code</span>
+            <span class="material-symbols-outlined">code</span>
           </div>
           <h3>Web development</h3>
           <p>
             We create fast, secure, and scalable websites and apps using modern
             technology.
           </p>
-          <a href="#" class="details-btn"
+          <a href="#Contact" class="details-btn"
             >Details <span class="arrow">→</span></a
           >
         </div>
 
         <div class="service-card">
           <div class="icon-box">
-            <span class="material-symbols-outlined">ad</span>
+            <span class="material-symbols-outlined">trending_up</span>
           </div>
           <h3>Digital Marketing</h3>
           <p>
             SEO, SEM, social media, and content marketing — achieve growth with
             the right strategy.
           </p>
-          <a href="#" class="details-btn"
+          <a href="#Contact" class="details-btn"
             >Details <span class="arrow">→</span></a
           >
         </div>
 
         <div class="service-card">
           <div class="icon-box">
-            <span class="material-symbols-outlined">photo_camera</span>
+            <span class="material-symbols-outlined">videocam</span>
           </div>
           <h3>Content Production</h3>
           <p>
             Professional photography, video production and graphic design
             services.
           </p>
-          <a href="#" class="details-btn"
+          <a href="#Contact" class="details-btn"
             >Details <span class="arrow">→</span></a
           >
         </div>
       </div>
+
       <!-- Portfolio -->
       <div class="project">
         <p id="Portfolio">Portfolio</p>
         <h1>Selected works</h1>
       </div>
       <div class="picture">
+        <!-- Replaced with reliable placeholders -->
         <img
-          src="https://market-resized.envatousercontent.com/previews/files/219380343/03_blog.jpg?w=590&h=300&cf_fit=crop&crop=top&format=auto&q=85&s=639fc9a589b95d53237df5b9963adb8ad06332f7145e3086c3a7dfb171e25a90"
-          alt="website-picture"
+          src="https://picsum.photos/seed/work1/800/600.jpg"
+          alt="Website project"
         />
         <img
           class="picture-2"
-          src="https://www.shutterstock.com/image-vector/creative-team-collaborating-on-digital-260nw-2656454995.jpg"
-          alt=""
+          src="https://picsum.photos/seed/work2/800/600.jpg"
+          alt="App design project"
         />
       </div>
     </section>
+
     <!-- Our Team -->
     <div class="team">
       <p id="Team">Our Team</p>
       <h1>Creators</h1>
     </div>
-    <div class="team-picture">
-      <img
-        class="Founder"
-        src="https://media.gettyimages.com/id/1368076322/photo/portrait-of-a-confident-businesswoman-in-an-office.jpg?s=612x612&w=gi&k=20&c=IzXz8JbeDPWo1R5-BLU_o70eu2rFQsRqqH7SM_cSRXk="
-        alt=""
-      />
-      <img
-        class="Founder"
-        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRCVskiFrcls1OtLXswYQviLdMq3Q6KRYAIfA&s"
-        alt=""
-      />
-      <img
-        class="Founder"
-        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSyHatj-Wuan2DOFNGhkqeXs9em3CI8nc7vSQ&s"
-        alt=""
-      />
-      <img
-        class="Founder"
-        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTbA1-zxelV6AnR2qANv6iOYOmMqkBg01Xxxw&s"
-        alt=""
-      />
+    
+    <div class="team-wrapper">
+        <div class="team-picture">
+            <!-- Using distinct seeds to get different people -->
+            <img
+              class="Founder"
+              src="https://picsum.photos/seed/person1/400/500.jpg"
+              alt="Founder"
+            />
+            <img
+              class="Founder"
+              src="https://picsum.photos/seed/person2/400/500.jpg"
+              alt="Creative Director"
+            />
+            <img
+              class="Founder"
+              src="https://picsum.photos/seed/person3/400/500.jpg"
+              alt="Lead Developer"
+            />
+            <img
+              class="Founder"
+              src="https://picsum.photos/seed/person4/400/500.jpg"
+              alt="UI/UX Lead"
+            />
+          </div>
+          <div class="team-member-name">
+            <p>
+              Arif Hossain <br />
+              <span>Founder and CEO</span>
+            </p>
+            <p>
+              Samia Rahman <br />
+              <span>Creative Director</span>
+            </p>
+            <p>
+              Mehdi Hassan <br />
+              <span>Lead Developer</span>
+            </p>
+            <p>
+              Tasneem Akhtar <br />
+              <span>UI/UX Lead</span>
+            </p>
+          </div>
     </div>
-    <div class="team-member-name">
-      <p>
-        Arif Hossain <br />
-        Founder and CEO
-      </p>
-      <p>
-        Samia Rahman <br />
-        Creative Director
-      </p>
-      <p>
-        Mehdi Hassan <br />
-        Lead Developer
-      </p>
-      <p>
-        Tasneem Akhtar <br />
-        UI/UX Lead
-      </p>
-    </div>
+
     <!-- Contact -->
     <div class="Contact-us">
       <div class="contact">
-        <p>
-          Contact-us
-        </p>
-        <h1  id="Contact" >Start your next project.</h1>
+        <p>Contact-us</p>
+        <h1 id="Contact">Start your next project.</h1>
         <h5>
           Make a phone call, email, or submit a form — we'll get back to you
           within 24 hours.
         </h5>
         <div class="contact-system">
-          <span class="material-symbols-outlined"> add_call </span>
+          <span class="material-symbols-outlined">add_call</span>
           <h6>+880 17XX-XXXXXX</h6>
         </div>
         <div class="contact-system">
-          <span class="material-symbols-outlined"> mail_lock </span>
+          <span class="material-symbols-outlined">mail</span>
           <h6>hello@agency.com.bd</h6>
         </div>
         <div class="contact-system">
-          <span class="material-symbols-outlined"> location_on </span>
+          <span class="material-symbols-outlined">location_on</span>
           <h6>Dhaka, Bangladesh</h6>
         </div>
       </div>
 
       <div class="contact-form">
-        <input type="text" placeholder="Your name" /> <br />
-        <input type="email" placeholder="Email address" /><br />
-
+        <input type="text" placeholder="Your name" />
+        <input type="email" placeholder="Email address" />
         <select>
           <option value="">Select service</option>
           <option value="web">Web Design</option>
-          <option value="dev">Development</option></select
-        ><br />
-
+          <option value="dev">Development</option>
+          <option value="marketing">Marketing</option>
+        </select>
         <textarea
           placeholder="Tell us about your project..."
           rows="5"
-        ></textarea
-        ><br />
-
+        ></textarea>
         <button type="submit" class="send-btn">
           Send message <span>&rarr;</span>
         </button>
       </div>
     </div>
+
     <!-- Footer -->
     <footer class="footer-section">
       <div class="footer-container">
@@ -307,10 +933,10 @@
           <h3>COMPANY</h3>
           <ul>
             <li><a href="#">About us</a></li>
-            <li><a href="#">Portfolio</a></li>
+            <li><a href="#Portfolio">Portfolio</a></li>
             <li><a href="#">Blog</a></li>
             <li><a href="#">Career</a></li>
-            <li><a href="#">Contact</a></li>
+            <li><a href="#Contact">Contact</a></li>
           </ul>
         </div>
       </div>
@@ -320,10 +946,18 @@
       <div class="footer-bottom">
         <p>© 2025 Agency. All rights reserved.</p>
         <div class="bottom-links">
-          <a href="#" id="Get a quote" >Privacy Policy</a>
+          <a href="#">Privacy Policy</a>
           <a href="#">Terms and conditions</a>
         </div>
       </div>
     </footer>
+
+    <!-- Minimal JavaScript for Mobile Menu -->
+    <script>
+      function toggleMenu() {
+        const nav = document.getElementById('navBar');
+        nav.classList.toggle('active');
+      }
+    </script>
   </body>
 </html>
