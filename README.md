@@ -8,7 +8,7 @@
 
 ## 📌 Project Overview
 
-স্বর্গ ট্রাভেলস is a professional travel agency website designed to provide users with an engaging and modern travel booking experience.  
+Agency Website is a professional travel agency website designed to provide users with an engaging and modern travel booking experience.  
 The project was converted from a professional agency-style design into a fully responsive frontend website using pure HTML, CSS, and Bootstrap.
 
 This project focuses on clean UI design, responsive layouts, smooth user experience, and modern section structuring.
