@@ -26,7 +26,7 @@ This project focuses on clean UI design, responsive layouts, smooth user experie
 
 ## 🚀 Live Demo
 
-(https://bonkimchakroborty.github.io/NextGen-Soccer-Academy-Website/)
+(https://bonkimchakroborty.github.io/agency-website-2/)
 
 ## ✨ Main Features
 
